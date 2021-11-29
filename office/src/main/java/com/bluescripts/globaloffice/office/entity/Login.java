@@ -20,6 +20,8 @@ public class Login {
 
     private String role;
 
+    private String emailId;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
