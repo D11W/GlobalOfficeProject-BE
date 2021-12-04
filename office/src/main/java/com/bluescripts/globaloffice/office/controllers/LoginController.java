@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/login")
@@ -44,6 +47,12 @@ public class LoginController {
     public LoginresetResponse resetPassword(@RequestBody PasswordresetRequest request,@RequestParam("emailId") String emailId)
     {
         return loginService.resetPassword(request,emailId);
+    }
+
+    @GetMapping("/otp")
+    public String generateOtp(@RequestParam("emailId") String emailId) throws UnsupportedEncodingException, MessagingException
+    {
+        return loginService.generateOtp(emailId);
     }
 
     @GetMapping("/logout")
